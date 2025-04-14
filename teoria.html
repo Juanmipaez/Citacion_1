@@ -1,44 +1,28 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-  <title>Aprende a Citar Correctamente</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <title>Arrastra y Arma la Cita</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Estilos de Citación</h1>
-
-  <div class="cards-container">
-    <div class="card">
-      <div class="icon">📘</div>
-      <h2>APA</h2>
-      <p>Apellido, Inicial. (Año). <i>Título del libro</i>. Editorial.<br><br>Ejemplo: Orwell, G. (1949). <i>1984</i>. Secker & Warburg.</p>
+    <h1>Arma la Cita Correcta</h1>
+    <div class="format-indicator" id="formatDisplay"></div>
+    <div class="game-area">
+        <div class="draggable-container" id="draggableContainer"></div>
+        <h2>Zona de Descarga</h2>
+        <div class="dropzone" id="dropzone"></div>
+        <div class="btn-group">
+            <button onclick="checkAnswer()">Verificar</button>
+            <button onclick="showAnswer()">Mostrar respuesta</button>
+            <button onclick="loadCitation()">Siguiente</button>
+            <button onclick="window.location.href='index.html'">Volver a la teoría</button>
+        </div>
+    <div class="feedback" id="feedback"></div>
     </div>
 
-    <div class="card">
-      <div class="icon">📗</div>
-      <h2>IEEE</h2>
-      <p>Inicial. Apellido, <i>Título</i>, Editorial, Año.<br><br>Ejemplo: G. Orwell, <i>1984</i>, Secker & Warburg, 1949.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">📙</div>
-      <h2>Vancouver</h2>
-      <p>Apellido Inicial. <i>Título</i>. Editorial; Año.<br><br>Ejemplo: Orwell G. <i>1984</i>. Secker & Warburg; 1949.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">📕</div>
-      <h2>Chicago</h2>
-      <p>Apellido, Nombre. <i>Título</i>. Ciudad: Editorial, Año.<br><br>Ejemplo: Orwell, George. <i>1984</i>. London: Secker & Warburg, 1949.</p>
-    </div>
-  </div>
-
-  <button class="practice-btn" onclick="window.location.href='index.html'">
-    Ir a la práctica ✨
-  </button>
+    <script src="script.js"></script>
 </body>
 </html>
