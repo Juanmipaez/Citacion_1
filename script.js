@@ -86,7 +86,6 @@ function loadCitation() {
         draggableContainer.appendChild(createDraggableElement(text));
     });
 
-    // Reinitialize Sortable (mobile + PC)
     Sortable.create(draggableContainer, {
         group: 'shared',
         animation: 150,
@@ -117,7 +116,13 @@ function checkAnswer() {
 
 function showAnswer() {
     const dropzone = document.getElementById("dropzone");
+    const draggableContainer = document.getElementById("draggableContainer");
+
+    // Limpia ambas zonas
     dropzone.innerHTML = "";
+    draggableContainer.innerHTML = "";
+
+    // Muestra la respuesta correcta
     currentCitation.correct.forEach(text => {
         dropzone.appendChild(createDraggableElement(text));
     });
@@ -132,5 +137,6 @@ function showAnswer() {
     feedback.textContent = "Esta era la forma correcta. " + currentCitation.explanation;
     feedback.style.color = "#00796b";
 }
+
 
 window.onload = loadCitation;
