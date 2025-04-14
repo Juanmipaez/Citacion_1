@@ -2,22 +2,22 @@ const citations = [
     {
         format: "APA",
         correct: ["Orwell, G.", "(1949).", "1984.", "Secker & Warburg."],
-        explanation: "En APA: Apellido, Inicial. (Año). Título en cursiva. Editorial."
+        explanation: "APA: Apellido, Inicial. (Año). Título en cursiva. Editorial."
     },
     {
         format: "IEEE",
         correct: ["G. Orwell,", "1984,", "Secker & Warburg,", "1949."],
-        explanation: "En IEEE: Inicial. Apellido, Título en cursiva, Editorial, Año."
+        explanation: "IEEE: Inicial. Apellido, Título en cursiva, Editorial, Año."
     },
     {
         format: "Vancouver",
         correct: ["Orwell G.", "1984.", "Secker & Warburg;", "1949."],
-        explanation: "En Vancouver: Apellido Inicial. Título. Editorial; Año."
+        explanation: "Vancouver: Apellido Inicial. Título. Editorial; Año."
     },
     {
         format: "Chicago",
         correct: ["Orwell, George.", "1984.", "London:", "Secker & Warburg,", "1949."],
-        explanation: "En Chicago: Apellido, Nombre. Título. Ciudad: Editorial, Año."
+        explanation: "Chicago: Apellido, Nombre. Título. Ciudad: Editorial, Año."
     },
     {
         format: "APA",
@@ -52,8 +52,7 @@ const citations = [
 ];
 
 let currentCitation = null;
-let draggedElement = null;
-  
+
 function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
 }
@@ -61,53 +60,8 @@ function shuffle(array) {
 function createDraggableElement(text) {
     const el = document.createElement('div');
     el.className = 'draggable';
-    el.draggable = true;
     el.textContent = text;
-
-    el.addEventListener('dragstart', (e) => {
-        draggedElement = el;
-        e.dataTransfer.setData("text/plain", text);
-        setTimeout(() => {
-        el.style.opacity = "0.5";
-    }, 0);
-    });
-
-    el.addEventListener('dragend', () => {
-        draggedElement = null;
-        el.style.opacity = "1";
-    });
-
     return el;
-}
-
-function allowDropZones(dropzone) {
-    dropzone.addEventListener("dragover", (e) => {
-        e.preventDefault();
-        const afterElement = getDragAfterElement(dropzone, e.clientX);
-        if (afterElement == null) {
-        dropzone.appendChild(draggedElement);
-    } else {
-        dropzone.insertBefore(draggedElement, afterElement);
-    }
-    });
-
-    dropzone.addEventListener("drop", (e) => {
-        e.preventDefault();
-    });
-}
-
-function getDragAfterElement(container, x) {
-    const draggableElements = [...container.querySelectorAll(".draggable:not(.dragging)")];
-    return draggableElements.reduce((closest, child) => {
-        const box = child.getBoundingClientRect();
-        const offset = x - box.left - box.width / 2;
-        if (offset < 0 && offset > closest.offset) {
-        return { offset: offset, element: child };
-    } 
-    else {
-        return closest;
-    }
-    }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
 
 function loadCitation() {
@@ -119,6 +73,11 @@ function loadCitation() {
 
     const draggableContainer = document.getElementById("draggableContainer");
     const dropzone = document.getElementById("dropzone");
+
+    // Destroy existing Sortables to avoid conflict
+    if (Sortable.get(draggableContainer)) Sortable.get(draggableContainer).destroy();
+    if (Sortable.get(dropzone)) Sortable.get(dropzone).destroy();
+
     draggableContainer.innerHTML = "";
     dropzone.innerHTML = "";
 
@@ -127,8 +86,18 @@ function loadCitation() {
         draggableContainer.appendChild(createDraggableElement(text));
     });
 
-    allowDropZones(draggableContainer);
-    allowDropZones(dropzone);
+    // Reinitialize Sortable (mobile + PC)
+    Sortable.create(draggableContainer, {
+        group: 'shared',
+        animation: 150,
+        sort: false
+    });
+
+    Sortable.create(dropzone, {
+        group: 'shared',
+        animation: 150,
+        sort: true
+    });
 }
 
 function checkAnswer() {
@@ -151,6 +120,12 @@ function showAnswer() {
     dropzone.innerHTML = "";
     currentCitation.correct.forEach(text => {
         dropzone.appendChild(createDraggableElement(text));
+    });
+
+    Sortable.create(dropzone, {
+        group: 'shared',
+        animation: 150,
+        sort: true
     });
 
     const feedback = document.getElementById("feedback");
