@@ -1,0 +1,377 @@
+/* * {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #e0f7fa, #f0f4c3);
+    padding: 2rem;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    color: #00796b;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #06a48a;
+}
+
+.format-indicator {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    color: #00796b;
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.draggable-container,
+.dropzone {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    min-height: 80px;
+    margin-bottom: 1rem;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.draggable {
+    padding: 0.6rem 1rem;
+    background-color: #80cbc4;
+    color: white;
+    border-radius: 10px;
+    cursor: grab;
+    font-weight: 600;
+    user-select: none;
+    transition: transform 0.2s;
+}
+
+.draggable:active {
+    transform: scale(1.05);
+}
+
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #00796b;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #004d40;
+}
+
+.feedback {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.card {
+    background-color: white;
+    width: 280px;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    color: #004d40;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #00796b;
+}
+
+.practice-btn {
+    display: block;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #00796b;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.practice-btn:hover {
+    background-color: #004d40;
+} */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #e0f7fa, #f0f4c3);
+    padding: 2rem;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    color: #00796b;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #06a48a;
+}
+
+.format-indicator {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    color: #00796b;
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.draggable-container,
+.dropzone {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    min-height: 80px;
+    margin-bottom: 1rem;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    max-width: 800px;
+}
+
+.draggable {
+    padding: 0.6rem 1rem;
+    background-color: #80cbc4;
+    color: white;
+    border-radius: 10px;
+    cursor: grab;
+    font-weight: 600;
+    user-select: none;
+    transition: transform 0.2s ease, background 0.3s ease;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.draggable:active {
+    transform: scale(1.05);
+}
+
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #00796b;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #004d40;
+    transform: scale(1.05);
+}
+
+.feedback {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    width: 100%;
+}
+
+.card {
+    background-color: white;
+    width: 280px;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    color: #004d40;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #00796b;
+}
+
+.practice-btn {
+    display: block;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: #00796b;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.practice-btn:hover {
+    background-color: #004d40;
+    transform: scale(1.05);
+}
+
+/* 📱 Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .draggable {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.8rem;
+    }
+
+    .draggable-container,
+    .dropzone {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.8rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .card {
+        width: 90%;
+    }
+
+    .cards-container {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .format-indicator {
+        font-size: 1rem;
+    }
+
+    .practice-btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}
